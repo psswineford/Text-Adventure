@@ -1,3 +1,33 @@
-h3 {
-    color: green;
+body {
+    background-image: url(./images/paper.jpg);
+}
+
+h1 {
+    text-align: center;
+}
+
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+        "Character-Info Room-Description Room-Description"
+        "Character-Info Action-Buttons- Action-Buttons-"
+        ". . .";
+}
+
+.Character-Info {
+     grid-area: Character-Info;
+}
+
+.Room-Description {
+    grid-area: Room-Description;
+}
+
+.Action-Buttons- {
+    grid-area: Action-Buttons-;
+    justify-content: center;
 }

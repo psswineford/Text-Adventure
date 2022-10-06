@@ -1,50 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
     <title>Text Adventure</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Welcome to Text Adventure!</h1>
+    <div class="container">
+      <!-- Character information section -->
+      <div class="Character-Info">
+        <h2>Character info</h2>
+        <h3>Character type: Knight</h3>
+        <h3>Character Hit Points: 20</h3>
+        <h3>Character Armor Class: 5</h3>
+        <h3>Character Items:</h3>
+      </div>
 
-    <!-- Character information section -->
-    <div class="character-info">
-        <h3>This area will have character info</h3>
-        <hr>
-    </div>
-
-    <!-- Action buttons -->
-    <h3>This section will have Action Buttons</h3>
-    <div id="action-buttons">
+      <!-- Action buttons -->
+      
+      <div id="action-buttons" class="Action-Buttons">
         <button class="btn">Action 1</button>
         <button class="btn">Action 2</button>
         <button class="btn">Action 3</button>
         <button class="btn">Action 4</button>
-        <hr>
-    </div>
+      </div>
 
-    <!-- Map section. Maybe
+      <!-- Map section. Maybe
     <div class="map">
         <h3>This section will have a map</h3>
         <p>Potential map here</p>
         <hr>
     </div> -->
 
-    <!-- Area description -->
-    <div class="textbox">
-        <h3>This section will contain a description of the room</h3>
-        <p id="roomtext">Room description goes here!</p>
-        <hr>
+      <!-- Area description -->
+      <div class="Room-Description">
+        <h2>The Current Room:</h2>
+        <h3 id="roomtext">Room description goes here!</h3>
+        <hr />
+      </div>
+
+      
     </div>
-
     <button onclick="startGame()">Start Game</button>
-
-
-    
-    
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
