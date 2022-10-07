@@ -8,24 +8,28 @@
     <title>Text Adventure</title>
   </head>
   <body>
-    <h1>Welcome to Text Adventure!</h1>
+    <div class="header">
+      <h1>Welcome to Text Adventure!</h1>
+      <button class="button-74" onclick="startGame()">Start Game</button>
+    </div>
     <div class="container">
       <!-- Character information section -->
-      <div class="Character-Info">
+      <div class="Character-Info" id="character-info">
         <h2>Character info</h2>
-        <h3>Character type: Knight</h3>
-        <h3>Character Hit Points: 20</h3>
-        <h3>Character Armor Class: 5</h3>
-        <h3>Character Items:</h3>
+        <h3>Character type: <span id="characterType"></span></h3>
+        <h3>Character Hit Points: <span id="characterHP"></span></h3>
+        <h3>Character Armor Class: <span id="characterAC"></span></h3>
+        <h3>Character Attack: <span id="characterAttack"></span></h3>
+        <h3>Character Items: <span id="characterItems"></span></h3>
       </div>
 
       <!-- Action buttons -->
-      
+
       <div id="action-buttons" class="Action-Buttons">
-        <button class="btn">Action 1</button>
+        <!-- <button class="btn">Action 1</button>
         <button class="btn">Action 2</button>
         <button class="btn">Action 3</button>
-        <button class="btn">Action 4</button>
+        <button class="btn">Action 4</button> -->
       </div>
 
       <!-- Map section. Maybe
@@ -38,13 +42,11 @@
       <!-- Area description -->
       <div class="Room-Description">
         <h2>The Current Room:</h2>
-        <h3 id="roomtext">Room description goes here!</h3>
+        <h3 id="roomtext">Legend tells of a king that ruled these lands a long time ago, and of the great magical sword he had. Rumors have led you to a tomb where the old king may be buried.  Heading in you are on the search to solve the maze and claim the sword of the king. Press the start button to begin. </h3>
         <hr />
       </div>
-
-      
     </div>
-    <button onclick="startGame()">Start Game</button>
+
     <script src="./script.js"></script>
   </body>
 </html>
