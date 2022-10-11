@@ -52,6 +52,11 @@ function selectOption(option) {
     // if the action buttons' value is less than 1 restart the game from the beginning
     return startGame();
   }
+
+  if (nextNodeId === 14) {
+    console.log('you fight the monster!')
+    Attack();
+  }
   state = Object.assign(state, option.setState);
   updateCharacterItems(updateItem);
   showRoomText(nextNodeId);
@@ -79,6 +84,82 @@ function updateCharacterItems(item) {
     characterItemElement.innerText = "Sword";
   }
 }
+//attack function gets a random number between 1 and 20 for both character and monster and checks againts AC. If the roll is greater than the AC then damage is applied
+function Attack() {
+  const currentCharacter = character.find((character) => character.type === 1); 
+  let currentCharacterHP = currentCharacter.characterHP;
+  console.log(currentCharacterHP)
+  let currentCharacterAC = currentCharacter.characterAC;
+  const currentMonster = monster.find((monster) => monster.type === 1);
+  let currentMonsterHP = currentMonster.monsterHP;
+  let currentMonsterAC = currentMonster.monsterAC;
+
+  let charResultsMessage = "";
+  let monsterResultsMessage = "";
+  let charAttackRoll = Math.floor(Math.random() * 20) + 1;
+  console.log(charAttackRoll);
+  let monsterAttackRoll = Math.floor(Math.random() * 20) + 1;
+  console.log(monsterAttackRoll);
+
+  if (charAttackRoll >= currentMonsterAC) {
+    charResultsMessage = "You hit the  monster for 5 damage";
+    currentMonsterHP = currentMonsterHP - 5;
+  } else {
+    charResultsMessage = "You miss the monster";
+
+  }
+
+  if (monsterAttackRoll >= currentCharacterAC) {
+    monsterResultsMessage = "The monster hits you for 2 damage";
+    currentCharacterHP = currentCharacterHP - 2;
+    console.log(currentCharacterHP)
+  } else {
+    monsterResultsMessage = "The monster misses you";
+  }
+
+  document.getElementById("char-attack-results").innerHTML = charResultsMessage;
+  document.getElementById("monster-attack-results").innerHTML =
+    monsterResultsMessage;
+  characterHPElement.innerHTML = currentCharacterHP;
+  //document.getElementById("monsterHP").innerHTML = monsterHP;
+
+  updateCharacterHP(currentCharacterHP);
+  updateMonsterHP(currentMonsterHP);
+  // endGame();
+}
+
+//checking the characters HP and returning the results
+function updateCharacterHP(currentCharacterHP) {
+  let characterDeathResults = "";
+  let characterIndex = character.indexOf((character) => character.type === 1)
+  if (currentCharacterHP > 0) {
+    characterDeathResults = "You are still alive!";
+    character[0].characterHP = currentCharacterHP;
+    console.log(characterIndex);
+  
+  } else {
+    characterDeathResults = "You are dead. So sad!";
+    // document.getElementById("attack-button").style.display = "none";
+    // document.getElementById("reset-button").style.display = "block";
+  }
+
+  document.getElementById("char-death").innerHTML = characterDeathResults;
+}
+
+//checking the monsters HP and returning the results
+function updateMonsterHP(currentMonsterHP) {
+  let monsterDeathResults = "";
+  if (currentMonsterHP > 0) {
+    monsterDeathResults = "The monster still lives!";
+  } else {
+    monsterDeathResults = "You have defeated the monster!";
+    // document.getElementById("attack-button").style.display = "none";
+    // document.getElementById("reset-button").style.display = "block";
+  }
+
+  document.getElementById("monster-death").innerHTML = monsterDeathResults;
+}
+
 
 // an array with all the options for each room
 const roomText = [
@@ -172,8 +253,8 @@ const roomText = [
     text: "You pull on several books but find nothing of interest, until you finally find one that seems stuck.  Pulling on it you hear a faint clicking sound and one of the bookshelves slides open.  A skeleton comes out from an alcove behind the book case and attacks!",
     options: [
       {
-        text: "Return",
-        nextText: 2,
+        text: "Fight the monster",
+        nextText: 14,
       },
     ],
   },
@@ -269,6 +350,16 @@ const roomText = [
       },
     ],
   },
+  {
+    id: 14,
+    text: "You begin to fight the monster!",
+    options: [
+      {
+        text: "Attack",
+        nextText: 14,
+      },
+    ],
+  },
 ];
 
 
@@ -287,6 +378,8 @@ let character = [
 //base monster stats
 let monster = [
   {
+    type: 1,
+    monsterType: "Skeleton",
     monsterHP: 10,
     monsterAC: 10,
     monsterAttack: 2,
